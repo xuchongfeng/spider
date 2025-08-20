@@ -90,7 +90,7 @@ const Tasks: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      render: (_, record: Task) => (
+      render: (_: any, record: Task) => (
         <Space size="middle">
           {record.status === '等待中' && (
             <Button

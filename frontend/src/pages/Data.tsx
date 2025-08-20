@@ -70,11 +70,11 @@ const Data: React.FC = () => {
       title: '提取数据',
       dataIndex: 'extractedData',
       key: 'extractedData',
-      render: (extractedData: any) => (
+      render: (extractedData: any): React.ReactNode => (
         <div>
           {Object.entries(extractedData).map(([key, value]) => (
             <Tag key={key} color="blue">
-              {key}: {value}
+              {key}: {String(value)}
             </Tag>
           ))}
         </div>
@@ -88,7 +88,7 @@ const Data: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      render: (_, record: DataItem) => (
+      render: (_: any, record: DataItem) => (
         <Space size="middle">
           <Button
             type="primary"

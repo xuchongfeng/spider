@@ -10,6 +10,11 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  RocketOutlined,
+  CloudOutlined,
+  SafetyCertificateOutlined,
+  TeamOutlined,
+  BellOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 
@@ -27,6 +32,11 @@ const MainLayout: React.FC = () => {
       label: '仪表盘',
     },
     {
+      key: '/features',
+      icon: <RocketOutlined />,
+      label: '功能特性',
+    },
+    {
       key: '/tasks',
       icon: <BugOutlined />,
       label: '爬虫任务',
@@ -40,6 +50,26 @@ const MainLayout: React.FC = () => {
       key: '/configs',
       icon: <SettingOutlined />,
       label: '爬虫配置',
+    },
+    {
+      key: '/proxies',
+      icon: <CloudOutlined />,
+      label: '代理管理',
+    },
+    {
+      key: '/captchas',
+      icon: <SafetyCertificateOutlined />,
+      label: '验证码管理',
+    },
+    {
+      key: '/accounts',
+      icon: <TeamOutlined />,
+      label: '账号管理',
+    },
+    {
+      key: '/alerts',
+      icon: <BellOutlined />,
+      label: '告警管理',
     },
   ];
 

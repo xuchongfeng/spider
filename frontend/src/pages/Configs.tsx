@@ -77,7 +77,7 @@ const Configs: React.FC = () => {
     {
       title: '状态',
       key: 'status',
-      render: (_, record: Config) => (
+      render: (_: any, record: Config) => (
         <Space>
           {record.isDefault && <Tag color="gold">默认</Tag>}
           {record.isActive ? (
@@ -96,7 +96,7 @@ const Configs: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      render: (_, record: Config) => (
+      render: (_: any, record: Config) => (
         <Space size="middle">
           <Button
             icon={<EditOutlined />}
