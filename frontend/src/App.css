@@ -1,0 +1,44 @@
+.App {
+  text-align: left;
+}
+
+.ant-layout-header {
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ant-layout-sider {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.06);
+}
+
+.ant-menu-dark .ant-menu-item-selected {
+  background-color: #1890ff;
+}
+
+.ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ant-table-thead > tr > th {
+  background-color: #fafafa;
+  font-weight: 600;
+}
+
+.ant-btn {
+  border-radius: 6px;
+}
+
+.ant-input, .ant-select-selector {
+  border-radius: 6px;
+}
+
+.ant-modal-content {
+  border-radius: 8px;
+}
+
+.ant-descriptions-item-label {
+  font-weight: 600;
+  color: #333;
+}
