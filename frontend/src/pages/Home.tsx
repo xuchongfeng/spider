@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, Row, Col, Typography, Divider, Tag, List, Space, Button } from 'antd';
+import { Card, Row, Col, Typography, Divider, List, Space, Button } from 'antd';
 import {
   BugOutlined,
   DatabaseOutlined,
-  SafetyOutlined,
   UserOutlined,
   EyeOutlined,
   BellOutlined,
@@ -17,7 +16,7 @@ import {
 
 const { Title, Paragraph, Text } = Typography;
 
-const Features: React.FC = () => {
+const Home: React.FC = () => {
   const features = [
     {
       icon: <BugOutlined style={{ fontSize: 32, color: '#1890ff' }} />,
@@ -152,7 +151,7 @@ const Features: React.FC = () => {
     {
       title: '数据安全',
       description: '数据加密存储，访问权限控制，审计日志记录',
-      icon: <SafetyOutlined />
+      icon: <BellOutlined />
     }
   ];
 
@@ -160,14 +159,13 @@ const Features: React.FC = () => {
     <div style={{ padding: '24px' }}>
       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
         <Title level={1} style={{ color: '#1890ff' }}>
-          🕷️ 通用爬虫平台功能特性
+          🐜 蚂蚁搬家 · 功能特性
         </Title>
         <Paragraph style={{ fontSize: '18px', color: '#666' }}>
           专业的爬虫解决方案，支持任意网站和APP内容爬取，提供完整的代理管理、验证码处理、账号管理等核心功能
         </Paragraph>
       </div>
 
-      {/* 核心功能展示 */}
       <Row gutter={[24, 24]}>
         {features.map((feature, index) => (
           <Col xs={24} sm={12} lg={8} key={index}>
@@ -210,7 +208,6 @@ const Features: React.FC = () => {
 
       <Divider />
 
-      {/* 技术特性 */}
       <div style={{ marginBottom: '48px' }}>
         <Title level={2} style={{ textAlign: 'center', marginBottom: '32px' }}>
           技术特性
@@ -232,62 +229,20 @@ const Features: React.FC = () => {
         </Row>
       </div>
 
-      {/* 应用场景 */}
-      <div style={{ marginBottom: '48px' }}>
-        <Title level={2} style={{ textAlign: 'center', marginBottom: '32px' }}>
-          应用场景
-        </Title>
-        <Row gutter={[16, 16]}>
-          <Col span={8}>
-            <Card>
-              <Title level={4}>📰 新闻媒体</Title>
-                <List size="small">
-                  <List.Item>新闻内容采集</List.Item>
-                  <List.Item>热点话题监控</List.Item>
-                  <List.Item>舆情分析数据</List.Item>
-                </List>
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card>
-              <Title level={4}>🛒 电商平台</Title>
-                <List size="small">
-                  <List.Item>商品信息采集</List.Item>
-                  <List.Item>价格监控分析</List.Item>
-                  <List.Item>竞品数据对比</List.Item>
-                </List>
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card>
-              <Title level={4}>💼 企业信息</Title>
-                <List size="small">
-                  <List.Item>企业工商信息</List.Item>
-                  <List.Item>招聘信息采集</List.Item>
-                  <List.Item>行业数据监控</List.Item>
-                </List>
-            </Card>
-          </Col>
-        </Row>
-      </div>
-
-      {/* 开始使用 */}
       <div style={{ textAlign: 'center', padding: '48px', background: '#f5f5f5', borderRadius: '12px' }}>
         <Title level={2}>准备开始使用？</Title>
         <Paragraph style={{ fontSize: '16px', marginBottom: '24px' }}>
           立即体验强大的爬虫平台，开始您的数据采集之旅
         </Paragraph>
         <Space size="large">
-          <Button type="primary" size="large" icon={<RocketOutlined />}>
-            立即开始
-          </Button>
-          <Button size="large" icon={<EyeOutlined />}>
-            查看演示
-          </Button>
+          <Button type="primary" size="large" icon={<RocketOutlined />}>立即开始</Button>
+          <Button size="large" icon={<EyeOutlined />}>查看演示</Button>
         </Space>
       </div>
     </div>
   );
 };
 
-export default Features;
+export default Home;
+
+

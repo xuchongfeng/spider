@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Button, Avatar, Dropdown } from 'antd';
+import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import {
   DashboardOutlined,
@@ -8,8 +8,6 @@ import {
   SettingOutlined,
   UserOutlined,
   LogoutOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   RocketOutlined,
   CloudOutlined,
   SafetyCertificateOutlined,
@@ -18,23 +16,17 @@ import {
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 
-const { Header, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 
 const MainLayout: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const menuItems: MenuProps['items'] = [
     {
-      key: '/',
+      key: '/dashboard',
       icon: <DashboardOutlined />,
       label: '仪表盘',
-    },
-    {
-      key: '/features',
-      icon: <RocketOutlined />,
-      label: '功能特性',
     },
     {
       key: '/tasks',
@@ -71,6 +63,11 @@ const MainLayout: React.FC = () => {
       icon: <BellOutlined />,
       label: '告警管理',
     },
+    {
+      key: '/support',
+      icon: <UserOutlined />,
+      label: '技术支持',
+    },
   ];
 
   const userMenuItems: MenuProps['items'] = [
@@ -96,45 +93,38 @@ const MainLayout: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-        <Menu
-          theme="dark"
-          mode="inline"
-          selectedKeys={[location.pathname]}
-          items={menuItems}
-          onClick={handleMenuClick}
-        />
-      </Sider>
-      <Layout>
-        <Header style={{ padding: 0, background: '#fff' }}>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64,
-            }}
-          />
-          <div style={{ float: 'right', marginRight: 24 }}>
-            <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
-              <Avatar icon={<UserOutlined />} />
-            </Dropdown>
+      <Header style={{ background: '#fff', padding: '0 16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <div
+            style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}
+            onClick={() => navigate('/')}
+          >
+            <BugOutlined style={{ fontSize: 20, color: '#1677ff' }} />
+            <span style={{ fontWeight: 600 }}>蚂蚁搬家</span>
           </div>
-        </Header>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            background: '#fff',
-          }}
-        >
-          <Outlet />
-        </Content>
-      </Layout>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <Menu
+              mode="horizontal"
+              selectedKeys={[location.pathname]}
+              items={menuItems}
+              onClick={handleMenuClick}
+            />
+          </div>
+          <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
+            <Avatar icon={<UserOutlined />} />
+          </Dropdown>
+        </div>
+      </Header>
+      <Content
+        style={{
+          margin: '24px 16px',
+          padding: 24,
+          minHeight: 280,
+          background: '#fff',
+        }}
+      >
+        <Outlet />
+      </Content>
     </Layout>
   );
 };

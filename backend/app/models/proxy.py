@@ -1,38 +1,27 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, Float, Text
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text, Float, ForeignKey
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from app.core.database import Base
 
 class Proxy(Base):
     __tablename__ = "proxies"
     
     id = Column(Integer, primary_key=True, index=True)
-    ip = Column(String(45), nullable=False, index=True)  # 支持IPv6
-    port = Column(Integer, nullable=False)
-    protocol = Column(String(10), nullable=False)  # http, https, socks4, socks5
-    country = Column(String(50))
-    region = Column(String(100))
-    city = Column(String(100))
-    isp = Column(String(100))
+    ip = Column(String(45), nullable=False, comment="代理IP")
+    port = Column(Integer, nullable=False, comment="代理端口")
+    protocol = Column(String(10), default="http", comment="协议类型")
+    country = Column(String(50), comment="国家/地区")
+    region = Column(String(100), comment="省份/州")
+    city = Column(String(100), comment="城市")
+    isp = Column(String(100), comment="网络服务商")
+    anonymity = Column(String(20), default="unknown", comment="匿名度")
+    speed = Column(Float, comment="响应速度(ms)")
+    success_rate = Column(Float, default=0.0, comment="成功率")
+    last_check_time = Column(DateTime, comment="最后检测时间")
+    is_active = Column(Boolean, default=True, comment="是否有效")
+    source_website_id = Column(Integer, ForeignKey("proxy_websites.id"), comment="来源网站ID")
+    created_at = Column(DateTime, default=func.now(), comment="创建时间")
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), comment="更新时间")
     
-    # 代理质量指标
-    speed = Column(Float)  # 响应速度(ms)
-    uptime = Column(Float)  # 在线率(%)
-    last_check = Column(DateTime(timezone=True))
-    is_active = Column(Boolean, default=True)
-    
-    # 代理类型
-    is_free = Column(Boolean, default=True)
-    provider = Column(String(100))  # 代理提供商
-    api_key = Column(String(200))  # API密钥
-    
-    # 使用统计
-    success_count = Column(Integer, default=0)
-    fail_count = Column(Integer, default=0)
-    last_used = Column(DateTime(timezone=True))
-    
-    # 元数据
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    
-    def __repr__(self):
-        return f"<Proxy(ip={self.ip}:{self.port}, protocol={self.protocol})>"
+    # 关系
+    source_website = relationship("ProxyWebsite", back_populates="proxies")
